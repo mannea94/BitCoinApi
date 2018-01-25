@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/green">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@drawable/selector_edit"
+        >
+        <LinearLayout
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:background="@drawable/selector_shape"
+            android:gravity="center">
+        <ImageView
+            android:id="@+id/imageRaw"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nameCoin"
+                android:layout_width="210dp"
+                android:layout_height="30dp"
+                android:background="@drawable/selector_edit2"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:gravity="center"
+                />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView
+        android:id="@+id/priceDolar"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:background="@drawable/selector_text"
+        android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/priceBitCoin"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:background="@drawable/selector_text2"
+            android:gravity="center"/>
+
+
+        </LinearLayout>
+        </LinearLayout>
+        <ImageButton
+            android:id="@+id/buttonADD"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/add"/>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
