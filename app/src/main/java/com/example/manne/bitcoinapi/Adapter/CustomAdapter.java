@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.manne.bitcoinapi.MainActivity2;
 import com.example.manne.bitcoinapi.Model.BitCoin;
 import com.example.manne.bitcoinapi.Listener.OnRowClickListener2;
+import com.example.manne.bitcoinapi.PreferencesManager;
 import com.example.manne.bitcoinapi.R;
 import com.squareup.picasso.Picasso;
 
@@ -63,12 +64,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                 .load("https://files.coinmarketcap.com/static/img/coins/64x64/"+bitCoin.getId()+".png")
                 .fit()
                 .into(holder.imageView);
-        holder.priceDolar.setText(bitCoin.getPrice_usd().toString());
+        holder.convert=PreferencesManager.getConvert(context);
+        if(holder.convert.equals("EUR")) {
+            holder.priceDolar.setText(bitCoin.getPrice_eur().toString());
+        }
+        if(holder.convert.equals("USD")){
+            holder.priceDolar.setText(bitCoin.getPrice_usd().toString());
+        }
         holder.priceBitCoin.setText(bitCoin.getPrice_btc().toString());
         holder.nameCoin.setText(bitCoin.getName());
         holder.rank=bitCoin.getRank();
         holder.symbol=bitCoin.getSymbol();
-
         holder.buttonADD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,7 +121,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         TextView nameCoin;
         String rank;
         String symbol;
-
+        String convert;
 
         public ViewHolder(View itemView) {
             super(itemView);

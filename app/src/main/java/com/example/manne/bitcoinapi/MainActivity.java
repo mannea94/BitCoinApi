@@ -30,13 +30,13 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton floatButton;
     @BindView(R.id.recyclerView2)
     RecyclerView recyclerView2;
-//    @BindView(R.id.action_settings)
-//    MenuItem item;
     BitCoinModel bitCoinModel;
     CustomAdapter2 customAdapter2;
     BitCoin bitCoin;
-    int pos;
     static int REQUEST_CODE=1000;
+    static int REQUEST_CODE2=1002;
+    String limit;
+    String currency;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        limit=String.valueOf(PreferencesManager.getLimit(MainActivity.this));
+        currency=PreferencesManager.getConvert(MainActivity.this);
 
         bitCoinModel=PreferencesManager.getBitCoins(this);
         if(bitCoinModel==null) {
@@ -65,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
                 myBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-//                        bitCoinModel=PreferencesManager.getBitCoins(MainActivity.this);
                         bitCoinModel.favorites.remove(position);
                         PreferencesManager.addBitCoins(bitCoinModel, MainActivity.this);
                         customAdapter2.setItems(getList());
@@ -88,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView2.setHasFixedSize(true);
         recyclerView2.setLayoutManager(new GridLayoutManager(this, 1));
         recyclerView2.setAdapter(customAdapter2);
+        customAdapter2.notifyDataSetChanged();
 
 
     }
@@ -111,22 +113,6 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, REQUEST_CODE);
     }
 
-        @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode==REQUEST_CODE && resultCode == RESULT_OK){
-            customAdapter2.setItems(getList());
-            customAdapter2.notifyDataSetChanged();
-//            recyclerView2.setAdapter(customAdapter2);
-        }
-
-    }
-
-
-
-
-
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -140,17 +126,40 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(MainActivity.this, MainActivity5.class);
+            intent.putExtra("LIMIT1", limit);
+            intent.putExtra("CURRENCY1", currency);
+            startActivityForResult(intent, REQUEST_CODE2);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
-}
-//    @OnClick(R.id.action_settings)
-//    public void onClickSettings(View view){
-//        Intent intent = new Intent(MainActivity.this, MainActivity5.class);
-//        startActivity(intent);
-//    }
+    }
+
+
+        @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode==REQUEST_CODE && resultCode == RESULT_OK){
+            customAdapter2.setItems(getList());
+            customAdapter2.notifyDataSetChanged();
+        }
+        if(requestCode==REQUEST_CODE2 && resultCode==RESULT_OK){
+            if(data.hasExtra("LIMIT")){
+                limit=data.getStringExtra("LIMIT");
+            }
+            if(data.hasExtra("CURRENCY")){
+                currency=data.getStringExtra("CURRENCY");
+            }
+            customAdapter2.setItems(getList());
+            customAdapter2.notifyDataSetChanged();
+        }
+
+    }
+
+
+
+
+
 }

@@ -29,7 +29,8 @@ public class MainActivity2 extends AppCompatActivity {
     ArrayList<BitCoin> bitCoins;
     BitCoin bitCoin;
     public BitCoinModel bitCoinModel;
-
+    String convert;
+    int limit;
 
 
 
@@ -39,6 +40,8 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
         ButterKnife.bind(this);
         api= new RestApi(this);
+        convert=PreferencesManager.getConvert(MainActivity2.this);
+        limit=PreferencesManager.getLimit(MainActivity2.this);
         bitCoinModel=PreferencesManager.getBitCoins(this);
 
         if(bitCoinModel==null) {
@@ -48,7 +51,7 @@ public class MainActivity2 extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
 
 
-        Call<ArrayList<BitCoin>> call = api.getCoins();
+        Call<ArrayList<BitCoin>> call = api.getCoins(convert, limit);
         call.enqueue(new Callback<ArrayList<BitCoin>>() {
             @Override
             public void onResponse(Call<ArrayList<BitCoin>> call, Response<ArrayList<BitCoin>> response) {

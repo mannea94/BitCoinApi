@@ -15,12 +15,12 @@ import retrofit2.http.Query;
 
 public interface ApiService {
     @GET("ticker/")
-    Call<ArrayList<BitCoin>> getCoins();
+    Call<ArrayList<BitCoin>> getCoins(@Query("convert") String convert, @Query("limit") int limit);
 
     @GET("ticker/{id}")
-    Call<ArrayList<BitCoin>> getBitCoins(@Path("id") String id);
+    Call<ArrayList<BitCoin>> getBitCoins(@Path("id") String id, @Query("convert") String convert);
 
-    @GET("ticker/"+ApiConstants.consumer_key)
-    Call<ArrayList<BitCoin>> getCoinsLimit();
+//    @GET("ticker")
+//    Call<ArrayList<BitCoin>> getCoinsLimit(@Query("convert") String convert, @Query("limit") int limit);
 
 }

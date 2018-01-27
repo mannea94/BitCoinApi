@@ -11,6 +11,7 @@ public class BitCoin implements Serializable {
     public String name;
     public double price_usd;
     public double price_btc;
+    public double price_eur;
     public String symbol;
     public String rank;
 
@@ -41,4 +42,9 @@ public class BitCoin implements Serializable {
     public String getSymbol() {
         return symbol;
     }
+
+    public Double getPrice_eur() {
+        return price_eur;
+    }
+
 }

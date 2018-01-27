@@ -37,7 +37,8 @@ public class MainActivity3 extends AppCompatActivity {
     BitCoin bitCoin;
     ArrayList<BitCoin> coins;
     RestApi api;
-    int pos;
+    String convert;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,15 +47,22 @@ public class MainActivity3 extends AppCompatActivity {
         ButterKnife.bind(this);
         api= new RestApi(this);
         final Intent intent = getIntent();
+        convert=PreferencesManager.getConvert(MainActivity3.this);
+
 //        bitCoin = (BitCoin) intent.getSerializableExtra("EXTRA");
-        Call <ArrayList<BitCoin>> call = api.getBitCoins(intent.getStringExtra("EXTRA"));
+        Call <ArrayList<BitCoin>> call = api.getBitCoins(intent.getStringExtra("EXTRA"), convert);
         call.enqueue(new Callback<ArrayList<BitCoin>>() {
             @Override
             public void onResponse(Call<ArrayList<BitCoin>> call, Response<ArrayList<BitCoin>> response) {
                 if(response.isSuccessful()){
                     coins=response.body();
                     bitCoin=coins.get(0);
-                    priceDollar.setText("Price USD: "+bitCoin.getPrice_usd());
+                    if(convert.equals("EUR")) {
+                        priceDollar.setText("Price EUR: " + bitCoin.getPrice_eur());
+                    }
+                    if(convert.equals("USD")){
+                        priceDollar.setText("Price USD: " + bitCoin.getPrice_usd());
+                    }
                     priceBit.setText("Price BTC: "+bitCoin.getPrice_btc());
                     name.setText("Name: \n"+bitCoin.getName());
                     symbol.setText("Symbol: \n"+bitCoin.getSymbol());

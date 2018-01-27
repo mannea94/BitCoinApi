@@ -46,16 +46,16 @@ public class RestApi {
         return getRetrofitInstance().create(ApiService.class);
     }
 
-    public Call<ArrayList<BitCoin>> getCoins(){
-        return request().getCoins();
+    public Call<ArrayList<BitCoin>> getCoins(String convert, int limit){
+        return request().getCoins(convert, limit);
     }
 
-    public Call<ArrayList<BitCoin>> getBitCoins(String id){
-        return request().getBitCoins(id);
+    public Call<ArrayList<BitCoin>> getBitCoins(String id, String convert){
+        return request().getBitCoins(id, convert);
     }
 
-    public Call<ArrayList<BitCoin>> getCoinsLimit(){
-        return request().getCoins();
-    }
+//    public Call<ArrayList<BitCoin>> getCoinsLimit(){
+//        return request().getCoinsLimit("convert", 50);
+//    }
 
 }

@@ -1,9 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.manne.bitcoinapi.MainActivity5">
+    tools:context="com.example.manne.bitcoinapi.MainActivity5"
+    android:orientation="vertical"
+    android:gravity="center">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:background="@drawable/selector_text2"
+        android:text="@string/limit"
+        android:gravity="center"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="5dp"/>
+
+    <RadioGroup
+        android:id="@+id/limit"
+        android:layout_width="230dp"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_gravity="left"
+        android:layout_marginLeft="55dp"
+        android:background="@drawable/selector_text">
+
+        <RadioButton
+            android:id="@+id/limit10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10"
+            />
+        <RadioButton
+            android:id="@+id/limit50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="50"
+            />
+        <RadioButton
+            android:id="@+id/limit100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100"
+            />
+        <RadioButton
+            android:id="@+id/limitALL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="all"
+            />
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:background="@drawable/selector_text2"
+        android:text="@string/valuta"
+        android:gravity="center"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"/>
+
+    <RadioGroup
+        android:id="@+id/currency"
+        android:layout_width="170dp"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_gravity="left"
+        android:layout_marginLeft="55dp"
+        android:background="@drawable/selector_text">
+
+        <RadioButton
+            android:id="@+id/currencyUSD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="USD"
+            />
+        <RadioButton
+            android:id="@+id/currencyEUR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EUR"
+            />
+
+    </RadioGroup>
+
+
+
+    <ImageButton
+        android:id="@+id/buttonSAVE"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/save"
+        android:layout_marginTop="10dp"/>
+
+
+
+</LinearLayout>

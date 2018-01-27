@@ -25,6 +25,22 @@ public class PreferencesManager {
         return new Gson().fromJson(getPreferences(c).getString("bitCoin",null), BitCoinModel.class);
     }
 
+    public static void addConvert(String convert, Context c){
+
+        getPreferences(c).edit().putString("convert", convert).apply();
+    }
+
+    public static String getConvert(Context c){
+        return  getPreferences(c).getString("convert", "USD");
+    }
+
+    public static void addLimit(int limit, Context c){
+        getPreferences(c).edit().putInt("limit", limit).apply();
+    }
+
+    public static int getLimit(Context c){
+        return  getPreferences(c).getInt("limit", 0);
+    }
 
 
     private  static SharedPreferences getPreferences(Context c){

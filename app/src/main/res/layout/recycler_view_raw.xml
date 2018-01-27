@@ -47,19 +47,19 @@
             android:orientation="horizontal">
         <TextView
         android:id="@+id/priceDolar"
-        android:layout_width="100dp"
+        android:layout_width="105dp"
         android:layout_height="30dp"
         android:layout_gravity="center"
-        android:layout_margin="5dp"
+        android:layout_marginVertical="5dp"
         android:background="@drawable/selector_text"
         android:gravity="center"/>
 
         <TextView
             android:id="@+id/priceBitCoin"
-            android:layout_width="100dp"
+            android:layout_width="105dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
-            android:layout_margin="5dp"
+            android:layout_marginVertical="5dp"
             android:background="@drawable/selector_text2"
             android:gravity="center"/>
 

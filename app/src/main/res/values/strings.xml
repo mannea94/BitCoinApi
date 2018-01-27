@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">BitCoinApi</string>
     <string name="action_settings">Settings</string>
+    <string name="limit">Please select one of the limit buttons</string>
+    <string name="valuta">Please select a currency</string>
+    <string name="save">save</string>
 </resources>
